@@ -3,12 +3,18 @@
     "description": "Get symbol quotes within a given date range",
     "type": "project",
     "require": {
-        "vlucas/phpdotenv": "^2.4"
+        "vlucas/phpdotenv": "^2.4",
+        "envms/fluentpdo": "1.1.*"
     },
     "authors": [
         {
             "name": "Marios Frixou",
             "email": "frixou89@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "classes/"
+        }
+    }
 }

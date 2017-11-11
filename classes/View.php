@@ -1,4 +1,5 @@
 <?php
+namespace app;
 
 /**
  * View class is responsible for rendering .php files from the /views directory
@@ -79,14 +80,15 @@ class View
 	 * Get the rendered file on class destruction
 	 */
 	function __destruct()
-	{	
+	{
 		// Extract data to view
 		if ($this->data) {
-			extract($this->data);			
+			// This will assign array keys to variables
+			extract($this->data);
 		}
 		// Include the view file
 		if ($this->render) {
-			include($this->render);			
+			include($this->render);
 		}
 	}
 }
