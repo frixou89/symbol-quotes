@@ -11,5 +11,9 @@ $title = (isset($title)) ? $title : 'No title found';
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="plugins/bootstrap-select/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="plugins/bootstrap-select/css/ajax-bootstrap-select.min.css">
+	<link rel="stylesheet" href="plugins/jquery/jquery-ui.min.css">
+	<link rel="stylesheet" href="plugins/jquery/jquery-ui.theme.min.css">
 </head>
 <body>
