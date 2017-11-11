@@ -1,31 +1,45 @@
 #!/usr/local/bin/php
 <?php
-	require(__DIR__ . '/vendor/autoload.php');
-	require(__DIR__ . '/classes/Autoloader.php');
+require(__DIR__ . '/vendor/autoload.php');
 
-	// Load dotenv
-	$dotenv = new Dotenv\Dotenv(__DIR__);
-	$dotenv->load();
+// Load dotenv
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
-	// Get the .csv url from environment variables
-    $downloadUrl = getenv('SYMBOLS_CSV_URL');
-    if (!$downloadUrl) {
-    	print "ERROR: Please set <SYMBOLS_CSV_URL> in your .env \n"; die();
-    }
+// Configure FluentPDO
+$db  = new PDO('mysql:dbname='.getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASS'));
+$fpdo = new FluentPDO($db);
 
-    try {
-    	// Get csv file. Suppress warnings
-    	$csv = @file_get_contents($downloadUrl);
-    	if (!$csv) {
-    		throw new Exception("ERROR: Couldn't read file from url \n");
-    	}
-    } catch (Exception $e) {
-    	print $e->getMessage();
-    }
+// Get the .csv url from environment variables
+$downloadUrl = getenv('SYMBOLS_CSV_URL');
+print "Loading symbols from: $downloadUrl \n";
+if (!$downloadUrl) {
+	print "ERROR: Please set <SYMBOLS_CSV_URL> in your .env \n"; die();
+}
 
-    $data = array_map("str_getcsv", explode("\n", $csv));
-    // unset($data[0]);
-    $fp = fopen('data/symbols.json', 'w');
-    fwrite($fp, json_encode($data));
-	fclose($fp);
+try {
+	// Get csv file. Suppress warnings
+	$csv = @file_get_contents($downloadUrl);
+	if (!$csv) {
+		throw new Exception("ERROR: Couldn't read file from url \n");
+	}
+} catch (Exception $e) {
+	print $e->getMessage();
+}
+
+$data = array_map("str_getcsv", explode("\n", $csv));
+
+$symbols = [];
+foreach ($data as $key => $row) {
+	if ($key === 0) {
+		continue;
+	}
+	if (isset($row[0]) && $row[0]) {
+		$symbols[] = ['value' => $row[0]];		
+	}
+}
+
+$fpdo->insertInto('symbols')->values($symbols)->execute();
+
+print 'Imported '.count($symbols).' symbols';
 ?>
