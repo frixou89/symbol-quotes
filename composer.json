@@ -1,0 +1,14 @@
+{
+    "name": "frixou89/symbols",
+    "description": "Get symbol quotes within a given date range",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "Marios Frixou",
+            "email": "frixou89@gmail.com"
+        }
+    ]
+}
