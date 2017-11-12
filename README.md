@@ -24,7 +24,7 @@ Installation
     SYMBOLS_CSV_URL = http://www.nasdaq.com/screening/companies-by-name.aspx?&render=download
 
     #Database
-    DB_NAME = daname
+    DB_NAME = dbname
     DB_USER = root
     DB_PASS = 
 
@@ -36,7 +36,7 @@ Installation
     MAILER_NAME = "Symbols"
   	~~~
 
-3. Create a database. Make sure the database name is identical to your `.env` file. `DB_NAME = daname`
+3. Create a database. Make sure the database name is identical to your `.env` file. `DB_NAME = dbname`
 
 4. There are two console commands the get you started. See `createdb` and `getSymbols` scripts inside the root directory.
 
@@ -56,4 +56,4 @@ Installation
      php -S localhost:8000
      ~~~
     
- 6. The site can be now accessed at [localhost:8000](localhost:8000/)
+ 6. The site can be now accessed at [http://localhost:8000](http://localhost:8000/)
