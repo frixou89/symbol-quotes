@@ -27,6 +27,7 @@ $sql = "CREATE TABLE `symbols` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; ";
 $sql.= "ALTER TABLE `symbols` ADD PRIMARY KEY (`id`); ";
 $sql.= "ALTER TABLE `symbols` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT; ";
+
 // Print messages
 if (!$mysqli->multi_query($sql)) {
     echo "Multi query failed: (" . $mysqli->errno . ") " . $mysqli->error;
