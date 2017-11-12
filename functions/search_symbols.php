@@ -1,7 +1,7 @@
 <?php
 // Prevent GET requests
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	echo 'GET requests not allowed'; die();
+	header("HTTP/1.0 405 Method Not Allowed"); die();
 }
 
 header('Content-Type: application/json');

@@ -1,7 +1,7 @@
 <?php
 // Prevent GET requests
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	echo 'GET requests not allowed'; die();
+	header("HTTP/1.0 405 Method Not Allowed"); die();
 }
 
 header('Content-Type: application/json');
@@ -11,7 +11,11 @@ if (!isset($_POST['s']) || empty($_POST['s'])) {
 }
 $symbol = $_POST['s'];
 
-$data = file_get_contents("https://www.google.com/finance/historical?output=csv&q=$symbol");
+// Get quotes from url using symbol. Supress warnings and handle empty results manually
+$data = @file_get_contents("https://www.google.com/finance/historical?output=csv&q=$symbol");
+if (!$data) {
+	header("HTTP/1.0 404 Symbol not found"); die();
+}
 $csv = explode("\n",$data);
 $dataArray = array_map('str_getcsv', $csv);
 
