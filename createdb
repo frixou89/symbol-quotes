@@ -5,16 +5,18 @@ require(__DIR__ . '/vendor/autoload.php');
 // Load dotenv
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
-
+// Get database credentials
 $dbname = getenv('DB_NAME');
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
-
+// Connect with mysqli to use custom SQL statements
 $mysqli = new mysqli("localhost", $user, $pass, $dbname);
-
+// Stop script execution on connect error
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    die();
 }
+// Drop database first
 if (!$mysqli->query("DROP TABLE IF EXISTS `symbols`")) {
     echo "Table creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
 }
@@ -25,11 +27,10 @@ $sql = "CREATE TABLE `symbols` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; ";
 $sql.= "ALTER TABLE `symbols` ADD PRIMARY KEY (`id`); ";
 $sql.= "ALTER TABLE `symbols` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT; ";
-
+// Print messages
 if (!$mysqli->multi_query($sql)) {
     echo "Multi query failed: (" . $mysqli->errno . ") " . $mysqli->error;
 } else {
 	echo "Database created!";
 }
-
 ?>

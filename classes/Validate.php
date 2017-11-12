@@ -2,6 +2,7 @@
 namespace app;
 
 use app\Connection;
+
 /**
  * Validate class
  */

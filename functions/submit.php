@@ -42,7 +42,7 @@ if (!Validate::dateFormat($end))
 	$errors['end'] = 'Please enter a date in <i>YYYY-mm-dd</i> format';
 if (!Validate::email($email))
 	$errors['email'] = 'Please enter a valid email';
-
+// Stop script execution if errors are found
 if ($errors) {
 	$result['errors'] = $errors;
 	header("HTTP/1.0 400 Bad Request");
@@ -53,8 +53,7 @@ if ($errors) {
 // Create the Transport
 $transport = (new Swift_SmtpTransport(getenv('MAILER_HOST'), 25))
   ->setUsername(getenv('MAILER_USER'))
-  ->setPassword(getenv('MAILER_PASSWORD'))
-;
+  ->setPassword(getenv('MAILER_PASSWORD'));
 // Create the Mailer using your created Transport
 $mailer = new Swift_Mailer($transport);
 // Create a message

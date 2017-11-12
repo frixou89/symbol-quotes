@@ -1,7 +1,8 @@
 <?php
 namespace app;
+
 /**
- * summary
+ * Class Connection
  */
 class Connection
 {
@@ -9,7 +10,9 @@ class Connection
 	protected $fpdo;
 
     /**
-     * summary
+     * Class constructor
+     * 
+     * Prepare the FluentPDO connector for reusability
      */
     function __construct()
     {
@@ -25,5 +28,4 @@ class Connection
     	$c = new self();
     	return $c->fpdo;
     }
-
 }

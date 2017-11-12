@@ -24,11 +24,12 @@ try {
 } catch (Exception $e) {
 	print $e->getMessage();
 }
-
+// Create an array from the csv content
 $data = array_map("str_getcsv", explode("\n", $csv));
 
 $symbols = [];
 foreach ($data as $key => $row) {
+	// Skip first row (headers) as we want to store only the symbols
 	if ($key === 0) {
 		continue;
 	}
@@ -36,8 +37,8 @@ foreach ($data as $key => $row) {
 		$symbols[] = ['value' => $row[0]];		
 	}
 }
-
+// Execute the INSERT command
 Connection::getFpdo()->insertInto('symbols')->values($symbols)->execute();
-
+// Print message
 print 'Imported '.count($symbols).' symbols';
 ?>
