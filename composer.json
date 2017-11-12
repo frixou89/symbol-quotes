@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "vlucas/phpdotenv": "^2.4",
-        "envms/fluentpdo": "1.1.*"
+        "envms/fluentpdo": "1.1.*",
+        "swiftmailer/swiftmailer": "^6.0"
     },
     "authors": [
         {

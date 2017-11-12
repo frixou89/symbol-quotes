@@ -10,6 +10,7 @@ var APP = (function () {
 	var resultsChartContainer = $('#results-chart');
 	var resultsChart = null;
 	var errorsContainer = form.find('#errors');
+	var loading = $('#loading');
 
 	var selectedSymbol = '';
 	var quotes = [];
@@ -126,7 +127,12 @@ var APP = (function () {
 	  			async: 'false',
 	  			type: 'POST',
 	  			data: form.serialize(),
+	  			beforeSend: function() {
+	  				form.addClass('d-none');
+	  				loading.removeClass('d-none');
+	  			},
 	  			error: function(response) {
+	  				form.removeClass('d-none');
 	  				// if response.errors exists and is array means we have errors
 		        	if ( response.errors && typeof response.errors === 'object') {
 		        		var errors = response.errors;
@@ -140,8 +146,8 @@ var APP = (function () {
 	  			},
 	  			success: function(response){
 	  				// Hide form
-	  				$('#form-symbols').removeClass('d-block');
-	  				$('#form-symbols').addClass('d-none');
+	  				form.removeClass('d-block');
+	  				form.addClass('d-none');
 
 	        		var quotesFiltered = filterQuotes(quotes, new Date(inpStartDate.val()), new Date(inpEndDate.val()));
 	        		if (resultsTableContainer.hasClass('initialized')) {
@@ -243,11 +249,13 @@ var APP = (function () {
 			                }
 			            }
 			        });
-		        }
-		    });
 
-		    // Show results container
-		    resultsContainer.removeClass('d-none');
+				    // Show results container
+				    loading.addClass('d-none');
+				    resultsContainer.removeClass('d-none');
+		        }
+				    
+		    });
 
 		    // Prevent form submission
 	  		return false;

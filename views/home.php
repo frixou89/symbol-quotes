@@ -48,10 +48,14 @@
 
 			<div id="errors"></div>
 		</form>
+		<!-- Loading bar -->
+		<div id="loading" class="progress d-none">
+	  		<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+		</div>
 
 		<!-- Results -->
 		<div class="results d-none">
-			<button class="btn btn-primary btn-sm" onclick="location.reload();">Reset Form</button>
+			<button class="btn btn-primary btn-sm" onclick="location.reload();">Restart</button>
 			<div class="row">
 				<div class="col-md-6">
 					<canvas id="results-chart" class="d-block mx-auto mt-4" width="400" height="400"></canvas>
