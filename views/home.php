@@ -16,14 +16,14 @@
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="in-startdate">Start Date</label>
-						<input type="text" name="start" class="form-control datepicker" id="in-startdate" placeholder="Start Date" data-error="Please select a date" required>
+						<input type="text" name="start" class="form-control datepicker" id="in-startdate" placeholder="Start Date" data-error="Please select a date" required disabled>
 						<div class="help-block with-errors"></div>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="in-enddate">End Date</label>
-						<input type="text" name="end" class="form-control datepicker" id="in-enddate" placeholder="End Date" data-error="Please select a date" required>
+						<input type="text" name="end" class="form-control datepicker" id="in-enddate" placeholder="End Date" data-error="Please select a date" required disabled>
 						<div class="help-block with-errors"></div>
 					</div>
 				</div>

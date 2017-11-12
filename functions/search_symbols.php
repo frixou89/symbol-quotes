@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 header('Content-Type: application/json');
 
 if (!isset($_POST['q'])) {
-	return null; die();
+	header("HTTP/1.0 400  Bad Request"); die();
 }
 $keyword = $_POST['q'];
 

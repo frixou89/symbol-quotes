@@ -21,12 +21,17 @@ switch ($request_uri[0]) {
 
     // Submit
     case '/submit':
-        require 'submit.php';
+        require '../functions/submit.php';
         break;
 
     // Search symbols
     case '/search-symbols':
-        require 'search_symbols.php';
+        require '../functions/search_symbols.php';
+        break;
+
+    // Get quotes
+    case '/get-quotes':
+        require '../functions/get_quotes.php';
         break;
 
     // Everything else
