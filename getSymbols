@@ -6,9 +6,7 @@ require(__DIR__ . '/vendor/autoload.php');
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-// Configure FluentPDO
-$pdo  = new PDO('mysql:dbname='.getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASS'));
-$fpdo = new FluentPDO($pdo);
+use app\Connection;
 
 // Get the .csv url from environment variables
 $downloadUrl = getenv('SYMBOLS_CSV_URL');
@@ -39,7 +37,7 @@ foreach ($data as $key => $row) {
 	}
 }
 
-$fpdo->insertInto('symbols')->values($symbols)->execute();
+Connection::getFpdo()->insertInto('symbols')->values($symbols)->execute();
 
 print 'Imported '.count($symbols).' symbols';
 ?>

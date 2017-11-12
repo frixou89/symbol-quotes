@@ -11,7 +11,7 @@ if (!isset($_POST['q'])) {
 }
 $keyword = $_POST['q'];
 
-$query = $fpdo->from('symbols')->where("value like '%$keyword%'")->execute();
+$query = \app\Connection::getFpdo()->from('symbols')->where("value like '%$keyword%'")->execute();
 $result	= $query->fetchAll();
 $data = [];
 foreach ($result as $row) {

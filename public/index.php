@@ -6,11 +6,8 @@ $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
 use app\View;
- 
-$pdo  = new PDO('mysql:dbname='.getenv('DB_NAME'), getenv('DB_USER'), getenv('DB_PASS'));
-$fpdo = new FluentPDO($pdo);
 
-// Grabs the URI and breaks it apart in case we have querystring stuff
+// Grabs the URI and breaks it apart in case we have querystring params
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 // Basic routing
