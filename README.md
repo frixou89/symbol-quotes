@@ -5,11 +5,11 @@ Get symbol quotes within a date range
 DIRECTORY STRUCTURE
 -------------------
 
-      classes/			  contains project classes
-      functions/          contains project scripts
-      public/             public folder. App should run from this directory
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the application
+      classes/			contains project classes
+      functions/			contains project scripts
+      public/			public folder. App should run from this directory
+      vendor/			contains dependent 3rd-party packages
+      views/			contains view files for the application
 
 
 Installation
